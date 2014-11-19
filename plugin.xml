@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="tv.synchronized.cordova.forcenetwork" version="1.0.0">
+
+    <name>ForceNetwork</name>
+    <description>Cordova ForceNetwork plugin</description>
+    <license>MIT</license>
+
+    <dependency id="org.apache.cordova.network-information"/>
+    <dependency id="org.apache.cordova.dialogs"/>
+
+    <engines>
+        <engine name="cordova" version="3.*" />
+    </engines>
+
+    <js-module src="www/ForceNetwork.js" name="ForceNetwork">
+        <clobbers target="cordova.plugins.ForceNetwork"/>
+    </js-module>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CDVForceNetwork">
+                <param name="ios-package" value="CDVForceNetwork" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVForceNetwork.h" />
+        <source-file src="src/ios/CDVForceNetwork.m" />
+
+        <framework src="SystemConfiguration.framework"/>
+
+    </platform>
+</plugin>
