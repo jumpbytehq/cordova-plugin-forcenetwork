@@ -50,3 +50,4 @@ Check if any connection available, and if not, display a dialog to invite user t
 
  - iOS<=8 solution
  - configurable start/resume/offline listeners
+ - configurable connections types
