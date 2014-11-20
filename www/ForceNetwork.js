@@ -35,7 +35,8 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
 };
 
 ForceNetwork.prototype.init = function(options) {
-    this.options = options || {};
+    options = options || {};
+    this.options = {};
     this.options.confirmTitle = options.confirmTitle || 'Network access';
     this.options.confirmMessage = options.confirmMessage || 'Internet connexion is not available';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
