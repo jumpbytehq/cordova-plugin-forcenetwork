@@ -1,6 +1,6 @@
 # force network cordova plugin
 
-### tv.synchronized.cordova.forcenetwork
+### synchronized.cordova.forcenetwork
 
 iOS only at the moment.
 
@@ -14,7 +14,7 @@ Connexion status is checked on : start, resume, offline
 
 Install the plugin :
 
-`cordova plugin add https://github.com/Synchronized-TV/tv.synchronized.cordova.forcenetwork.git`
+`cordova plugin add https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork.git`
 
 ## Usage
 
