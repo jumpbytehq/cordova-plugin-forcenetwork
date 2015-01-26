@@ -28,15 +28,22 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
     // ensure network is available and invite user to open settings
     var that = this;
     if (!this.isConnected()) {
-        navigator.notification.confirm(this.options.confirmMessage, function(buttonIndex) {
-            that.openNetworkSettings();
-        }, this.options.confirmTitle, [this.options.confirmButtonTitle]);
+        setTimeout(function() {
+            // second check after timeout
+            if (!that.isConnected()) {
+                that.confirmWindow = navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
+                    that.openNetworkSettings();
+                }, that.options.confirmTitle, [that.options.confirmButtonTitle]);
+            }
+        }, that.options.timeoutDelay);
     }
 };
 
 ForceNetwork.prototype.init = function(options) {
     options = options || {};
-    this.options = {};
+    this.options = {
+        timeoutDelay: 5000
+    };
     this.options.confirmTitle = options.confirmTitle || 'Network access';
     this.options.confirmMessage = options.confirmMessage || 'Internet connexion is not available';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
