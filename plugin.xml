@@ -4,9 +4,10 @@
     <name>ForceNetwork</name>
     <description>Cordova ForceNetwork plugin</description>
     <license>MIT</license>
+    <repo>https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork.git</repo>
 
-    <dependency id="org.apache.cordova.network-information"/>
-    <dependency id="org.apache.cordova.dialogs"/>
+    <dependency id="cordova-plugin-network-information"/>
+    <dependency id="cordova-plugin-dialogs"/>
 
     <engines>
         <engine name="cordova" version="3.*" />
