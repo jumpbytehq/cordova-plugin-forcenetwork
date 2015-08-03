@@ -31,16 +31,32 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
         setTimeout(function() {
             // second check after timeout
             if (!that.isConnected()) {
-                that.confirmWindow = navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
-                    that.openNetworkSettings();
-                }, that.options.confirmTitle, [that.options.confirmButtonTitle]);
+                if (!that.confirmWindow) {
+                  that.confirmWindow = true;
+                  navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
+                      that.confirmWindow = false;
+                      that.openNetworkSettings();
+                  }, that.options.confirmTitle, [that.options.confirmButtonTitle]);
+                }
             }
         }, that.options.timeoutDelay);
+    } else {
+      navigator.notification.dismissAlert();
+      that.confirmWindow = false;
     }
 };
-
+ForceNetwork.prototype.onOnline = function() {
+  navigator.notification.dismissAlert();
+  this.confirmWindow = false;
+}
+ForceNetwork.prototype.onOffline = function() {
+  this.ensureNetworkConnection();
+}
+ForceNetwork.prototype.onResume = function() {
+  this.ensureNetworkConnection();
+}
 ForceNetwork.prototype.init = function(options) {
-    options = options || {};
+    options = options || {};
     this.options = {
         timeoutDelay: 5000
     };
@@ -48,9 +64,9 @@ ForceNetwork.prototype.init = function(options) {
     this.options.confirmMessage = options.confirmMessage || 'Internet connexion is not available';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
 
-    document.addEventListener("resume", this.ensureNetworkConnection.bind(this), false);
-    document.addEventListener("offline", this.ensureNetworkConnection.bind(this), false);
-    this.ensureNetworkConnection();
+    document.addEventListener("online", this.onOnline.bind(this), false);
+    document.addEventListener("offline", this.onOffline.bind(this), false);
+    document.addEventListener("resume", this.onResume.bind(this), false);
 };
 
 

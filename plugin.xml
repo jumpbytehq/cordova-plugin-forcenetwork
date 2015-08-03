@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="synchronized.cordova.forcenetwork" version="1.0.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-forcenetwork" version="1.0.0">
 
-    <name>ForceNetwork</name>
-    <description>Cordova ForceNetwork plugin</description>
+    <name>cordova-plugin-forcenetwork</name>
+    <description>Force user to switch-on its internet connection</description>
     <license>MIT</license>
     <repo>https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork.git</repo>
 

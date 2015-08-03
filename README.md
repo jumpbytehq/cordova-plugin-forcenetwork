@@ -1,6 +1,4 @@
-# force network cordova plugin
-
-### synchronized.cordova.forcenetwork
+# cordova-plugin-forcenetwork
 
 iOS only at the moment.
 
@@ -8,13 +6,13 @@ Ensure we always have internet available and invite user to change its settings 
 
 This plugin use cordova [network-information](https://github.com/apache/cordova-plugin-network-information) and [dialogs](https://github.com/apache/cordova-plugin-dialogs) plugins.
 
-Connexion status is checked on : start, resume, offline
+Connexion status is checked on : online, offline, resume
 
 ## Installation
 
 Install the plugin :
 
-`cordova plugin add https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork.git`
+`cordova plugin add --save https://github.com/Synchronized-TV/cordova-plugin-forcenetwork.git`
 
 ## Usage
 
