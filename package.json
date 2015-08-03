@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork.git"
+    "url": "git+https://github.com/Synchronized-TV/cordova-plugin-forcenetwork.git"
   },
   "author": "Julien Bouquillon <julien.bouquillon@synchronized.tv>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork/issues"
+    "url": "https://github.com/Synchronized-TV/cordova-plugin-forcenetwork/issues"
   },
-  "homepage": "https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork#readme"
+  "homepage": "https://github.com/Synchronized-TV/cordova-plugin-forcenetwork#readme"
 }
