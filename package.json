@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-forcenetwork",
+  "version": "1.0.0",
+  "description": "Force user to switch-on its internet connection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork.git"
+  },
+  "author": "Julien Bouquillon <julien.bouquillon@synchronized.tv>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork/issues"
+  },
+  "homepage": "https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork#readme"
+}
