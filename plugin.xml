@@ -4,10 +4,10 @@
     <name>cordova-plugin-forcenetwork</name>
     <description>Force user to switch-on its internet connection</description>
     <license>MIT</license>
-    <repo>https://github.com/Synchronized-TV/synchronized.cordova.forcenetwork.git</repo>
+    <repo>https://github.com/Synchronized-TV/cordova-plugin-forcenetwork.git</repo>
 
     <dependency id="cordova-plugin-network-information"/>
-    <dependency id="cordova-plugin-dialogs"/>
+    <dependency id="cordova-plugin-dialogs" url="https://github.com/revolunet/cordova-plugin-dialogs" commit="c70eb82adc8d11889ab47c01a686f692f60b1623"/>
 
     <engines>
         <engine name="cordova" version="3.*" />
