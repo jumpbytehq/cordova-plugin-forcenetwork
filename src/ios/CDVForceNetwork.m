@@ -14,7 +14,7 @@
 {
     if([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0)
     {
-        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        NSURL *url = [NSURL URLWithString:@"prefs:root=WIFI"];
         [[UIApplication sharedApplication] openURL:url];
     }
 }

@@ -17,7 +17,7 @@ ForceNetwork.prototype.getConnectionType = function () {
 };
 
 ForceNetwork.prototype.isConnected = function () {
-    return (navigator.connection.type !== Connection.NONE);
+    return (navigator.connection.type === Connection.WIFI);
 };
 
 ForceNetwork.prototype.openNetworkSettings = function () {
