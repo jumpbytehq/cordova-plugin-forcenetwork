@@ -2,11 +2,13 @@
 
 iOS only at the moment.
 
-Ensure we always have internet available and invite user to change its settings if not.
+Ensure we always have WiFi available and invite user to change its settings if not.
 
 This plugin use cordova [network-information](https://github.com/apache/cordova-plugin-network-information) and [dialogs](https://github.com/apache/cordova-plugin-dialogs) plugins.
 
 Connexion status is checked on : online, offline, resume
+
+:warning: plugin should add a `CFBundleURLTypes` in the app `plist` file. Make sure it is.
 
 ## Installation
 
