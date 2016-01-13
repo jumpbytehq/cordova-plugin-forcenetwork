@@ -9,10 +9,6 @@
     <dependency id="cordova-plugin-network-information"/>
     <dependency id="cordova-plugin-dialogs" url="https://github.com/revolunet/cordova-plugin-dialogs" commit="c70eb82adc8d11889ab47c01a686f692f60b1623"/>
 
-    <engines>
-        <engine name="cordova" version="3.*" />
-    </engines>
-
     <js-module src="www/ForceNetwork.js" name="ForceNetwork">
         <clobbers target="cordova.plugins.ForceNetwork"/>
     </js-module>
