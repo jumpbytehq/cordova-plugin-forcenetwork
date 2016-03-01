@@ -20,6 +20,10 @@ ForceNetwork.prototype.isConnected = function () {
     return (navigator.connection.type === Connection.WIFI);
 };
 
+ForceNetwork.prototype.enableWifi = function(){
+    cordova.exec(function() {}, function() {}, "CDVForceNetwork", "enableWifi", []);
+};
+
 ForceNetwork.prototype.openNetworkSettings = function () {
     cordova.exec(function() {}, function() {}, "CDVForceNetwork", "openNetworkSettings", []);
 };
