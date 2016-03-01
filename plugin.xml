@@ -13,13 +13,15 @@
         <clobbers target="cordova.plugins.ForceNetwork"/>
     </js-module>
 
-    <platform name="android">
+    <platform name="android">        
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
             <uses-permission android:name="android.permission.INTERNET"/>
             <uses-permission android:name="android.permission.WAKE_LOCK"/>
         </config-file>
+
+        <source-file src="src/android/CDVForceNetwork.java" target-dir="src/com/jumpbyte/forcenetwork" />                                                                            
     </platform>
 
     <platform name="ios">

@@ -1,5 +1,5 @@
 
-package org.apache.cordova.device;
+package com.jumpbyte.forcenetwork;
 
 import java.util.TimeZone;
 
