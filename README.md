@@ -42,7 +42,7 @@ return boolean indicating if we have any internet
 open iOS network settings panel
 open Android network settings panel
 
-### `cordova.plugins.ForceNetwork.openNetworkDialog()`
+#### `cordova.plugins.ForceNetwork.openNetworkDialog()`
 
 open Dialog to ask user to enable WiFi Network or open Network settings panel
 
