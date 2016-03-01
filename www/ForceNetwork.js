@@ -49,6 +49,36 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
       that.confirmWindow = false;
     }
 };
+
+ForceNetwork.prototype.openNetworkDialog = function () {
+    // ensure network is available and invite user to open settings
+    var that = this;
+    if (!this.isConnected()) {
+        setTimeout(function() {
+            // second check after timeout
+            if (!that.isConnected()) {
+                if (!that.confirmWindow) {
+                  that.confirmWindow = true;
+                  navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
+                      if(buttonIndex == 1){
+                        that.confirmWindow = false;
+                        that.enableWifi();
+                      }else if(buttonIndex == 2){
+                        that.confirmWindow = false;
+                        that.openNetworkSettings();
+                      }else{
+                        that.confirmWindow = false;
+                      }                      
+                  }, that.options.confirmTitle, that.options.confirmButtonTitle);
+                }
+            }
+        }, that.options.timeoutDelay);
+    } else {
+      navigator.notification.dismissAlert();
+      that.confirmWindow = false;
+    }
+};
+
 ForceNetwork.prototype.onOnline = function() {
   navigator.notification.dismissAlert();
   this.confirmWindow = false;
@@ -65,8 +95,9 @@ ForceNetwork.prototype.init = function(options) {
         timeoutDelay: 5000
     };
     this.options.confirmTitle = options.confirmTitle || 'Network access';
-    this.options.confirmMessage = options.confirmMessage || 'Internet connexion is not available';
+    this.options.confirmMessage = options.confirmMessage || 'Internet connection is not available';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
+    this.options.confirmButtonTitles = ["Enable WiFi", "Open Netowrk", "Cancel"];
 
     document.addEventListener("online", this.onOnline.bind(this), false);
     document.addEventListener("offline", this.onOffline.bind(this), false);
