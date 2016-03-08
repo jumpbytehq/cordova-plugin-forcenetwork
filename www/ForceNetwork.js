@@ -75,7 +75,7 @@ ForceNetwork.prototype.openNetworkDialog = function () {
                       }else{
                         that.confirmWindow = false;
                       }                      
-                  }, that.options.confirmTitle, that.options.confirmButtonTitles);
+                  }, that.options.confirmTitle, ["Enable WiFi", "Open Netowrk", "Cancel"]);
                 }
             }
         }, that.options.timeoutDelay);
@@ -103,8 +103,7 @@ ForceNetwork.prototype.init = function(options) {
     this.options.confirmTitle = options.confirmTitle || 'Network access';
     this.options.confirmMessage = options.confirmMessage || 'Internet connection is not available';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
-    this.options.confirmButtonTitles = options.confirmButtonTitles || ["Enable WiFi", "Open Netowrk", "Cancel"];
-
+    
     document.addEventListener("online", this.onOnline.bind(this), false);
     document.addEventListener("offline", this.onOffline.bind(this), false);
     document.addEventListener("resume", this.onResume.bind(this), false);
