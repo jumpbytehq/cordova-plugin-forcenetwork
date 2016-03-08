@@ -1,7 +1,6 @@
-cordova.define("cordova-plugin-forcenetwork.ForceNetwork", function(require, exports, module) {
-var exec = require("cordova/exec");
+var exec = require('cordova/exec');
 
-var ForceNetwork = function(){};
+var ForceNetwork = {};
 
 ForceNetwork.prototype.getConnectionType = function () {
     var states = {};
@@ -111,7 +110,4 @@ ForceNetwork.prototype.init = function(options) {
     document.addEventListener("resume", this.onResume.bind(this), false);
 };
 
-
 module.exports = new ForceNetwork();
-
-});
