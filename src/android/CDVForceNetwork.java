@@ -6,6 +6,12 @@ import java.util.TimeZone;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.provider.Settings;
 
 public class CDVForceNetwork extends CordovaPlugin {
@@ -27,8 +33,8 @@ public class CDVForceNetwork extends CordovaPlugin {
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("openNetworkSettings".equals(action)) {
-            Context context=this.cordova.getActivity().getApplicationContext(); 
-            context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));            
+            Context context=this.cordova.getActivity().getApplicationContext();
+            context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
         }
         else if("enableWifi".equals(action)){
             Context context=this.cordova.getActivity().getApplicationContext(); 

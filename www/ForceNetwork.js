@@ -17,7 +17,10 @@ ForceNetwork.prototype.getConnectionType = function () {
 };
 
 ForceNetwork.prototype.isConnected = function () {
-    return (navigator.connection.type === Connection.WIFI);
+    return (navigator.connection.type === Connection.WIFI || 
+            navigator.connection.type === Connection.CELL_2G || 
+            navigator.connection.type === Connection.CELL_3G ||
+            navigator.connection.type === Connection.CELL_4G);
 };
 
 ForceNetwork.prototype.enableWifi = function(){
@@ -97,7 +100,7 @@ ForceNetwork.prototype.init = function(options) {
     this.options.confirmTitle = options.confirmTitle || 'Network access';
     this.options.confirmMessage = options.confirmMessage || 'Internet connection is not available';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
-    this.options.confirmButtonTitles = ["Enable WiFi", "Open Netowrk", "Cancel"];
+    this.options.confirmButtonTitles = options.confirmButtonTitles || ["Enable WiFi", "Open Netowrk", "Cancel"];
 
     document.addEventListener("online", this.onOnline.bind(this), false);
     document.addEventListener("offline", this.onOffline.bind(this), false);

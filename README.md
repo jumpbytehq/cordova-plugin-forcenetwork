@@ -27,6 +27,7 @@ options :
  - `confirmTitle` : title of the confirm window when no connexion
  - `confirmMessage` : title of the confirm message when no connexion
  - `confirmButtonTitle` : title of the button to open settings when no connexion
+ - 'confirmButtonTitles' : this is required in case you want to show dialog to either enable WiFi or open Network (Android Only)
  
 
 #### `cordova.plugins.ForceNetwork.getConnectionType()`
