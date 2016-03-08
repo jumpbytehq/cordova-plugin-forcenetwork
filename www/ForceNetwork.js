@@ -1,6 +1,6 @@
 var exec = require('cordova/exec');
 
-var ForceNetwork = {};
+var ForceNetwork = function(){};
 
 ForceNetwork.prototype.getConnectionType = function () {
     var states = {};
