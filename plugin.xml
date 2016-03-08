@@ -21,7 +21,13 @@
             <uses-permission android:name="android.permission.WAKE_LOCK"/>
         </config-file>
 
-        <source-file src="src/android/CDVForceNetwork.java" target-dir="src/com/jumpbyte/forcenetwork" />                                                                            
+        <source-file src="src/android/CDVForceNetwork.java" target-dir="src/com/jumpbyte/forcenetwork" />            
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CDVForceNetwork">
+                <param name="android-package" value="com.jumpbyte.forcenetwork.CDVForceNetwork"/>
+            </feature>
+        </config-file>                                                                
     </platform>
 
     <platform name="ios">

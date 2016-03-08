@@ -1,3 +1,4 @@
+cordova.define("cordova-plugin-forcenetwork.ForceNetwork", function(require, exports, module) {
 var exec = require("cordova/exec");
 
 var ForceNetwork = function(){};
@@ -24,10 +25,12 @@ ForceNetwork.prototype.isConnected = function () {
 };
 
 ForceNetwork.prototype.enableWifi = function(){
+  console.log("CDVForceNetwork - enable wifi");
     cordova.exec(function() {}, function() {}, "CDVForceNetwork", "enableWifi", []);
 };
 
 ForceNetwork.prototype.openNetworkSettings = function () {
+  console.log("CDVForceNetwork - open network settings");
     cordova.exec(function() {}, function() {}, "CDVForceNetwork", "openNetworkSettings", []);
 };
 
@@ -63,6 +66,7 @@ ForceNetwork.prototype.openNetworkDialog = function () {
                 if (!that.confirmWindow) {
                   that.confirmWindow = true;
                   navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
+            console.log("button clicked " + buttonIndex);
                       if(buttonIndex == 1){
                         that.confirmWindow = false;
                         that.enableWifi();
@@ -72,7 +76,7 @@ ForceNetwork.prototype.openNetworkDialog = function () {
                       }else{
                         that.confirmWindow = false;
                       }                      
-                  }, that.options.confirmTitle, that.options.confirmButtonTitle);
+                  }, that.options.confirmTitle, that.options.confirmButtonTitles);
                 }
             }
         }, that.options.timeoutDelay);
@@ -109,3 +113,5 @@ ForceNetwork.prototype.init = function(options) {
 
 
 module.exports = new ForceNetwork();
+
+});
