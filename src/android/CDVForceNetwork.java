@@ -34,7 +34,9 @@ public class CDVForceNetwork extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("openNetworkSettings".equals(action)) {
             Context context=this.cordova.getActivity().getApplicationContext();
-            context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+            Intent intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
         else if("enableWifi".equals(action)){
             Context context=this.cordova.getActivity().getApplicationContext(); 
