@@ -16,11 +16,28 @@ ForceNetwork.prototype.getConnectionType = function () {
     return states[navigator.connection.type];
 };
 
+ForceNetwork.prototype.isOnlineNow = function(){
+  var xmlhttp = new XMLHttpRequest();
+  var that = this;
+
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState === 4 && xhttp.status == 200) {
+      that.options.isOnline();    
+    }else{
+      that.options.isOffline();
+    }
+  };
+
+  xmlhttp.open('GET', this.options.url, true);
+  xmlhttp.send();
+};
+
 ForceNetwork.prototype.isConnected = function () {
     return (navigator.connection.type === Connection.WIFI || 
             navigator.connection.type === Connection.CELL_2G || 
             navigator.connection.type === Connection.CELL_3G ||
-            navigator.connection.type === Connection.CELL_4G);
+            navigator.connection.type === Connection.CELL_4G ||
+            navigator.connection.type === Connection.CELL);
 };
 
 ForceNetwork.prototype.enableWifi = function(){
@@ -42,10 +59,25 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
             if (!that.isConnected()) {
                 if (!that.confirmWindow) {
                   that.confirmWindow = true;
+                  
                   navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
-                      that.confirmWindow = false;
-                      that.openNetworkSettings();
-                  }, that.options.confirmTitle, [that.options.confirmButtonTitle]);
+                      console.log("button clicked " + buttonIndex);
+                      if(buttonIndex == 1){
+                        that.confirmWindow = false;
+                        that.enableWifi();
+                        if(success){
+                          setTimeout(function(){
+                            that.isOnline();
+                          }, 5000);
+                        }                      
+                      }else if(buttonIndex == 2){
+                        that.confirmWindow = false;
+                        that.openNetworkSettings();
+                      }else{
+                        that.confirmWindow = false;
+                        that.options.isError();  
+                      }                      
+                  }, that.options.confirmTitle, ["Enable WiFi", "Open Netowrk", "Cancel"]);
                 }
             }
         }, that.options.timeoutDelay);
@@ -66,14 +98,21 @@ ForceNetwork.prototype.openNetworkDialog = function () {
                   that.confirmWindow = true;
                   navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
             console.log("button clicked " + buttonIndex);
+
                       if(buttonIndex == 1){
                         that.confirmWindow = false;
                         that.enableWifi();
+                        if(success){
+                          setTimeout(function(){
+                            that.isOnline();
+                          }, 5000);
+                        }                      
                       }else if(buttonIndex == 2){
                         that.confirmWindow = false;
                         that.openNetworkSettings();
                       }else{
                         that.confirmWindow = false;
+                        that.options.isError();  
                       }                      
                   }, that.options.confirmTitle, ["Enable WiFi", "Open Netowrk", "Cancel"]);
                 }
@@ -88,9 +127,12 @@ ForceNetwork.prototype.openNetworkDialog = function () {
 ForceNetwork.prototype.onOnline = function() {
   navigator.notification.dismissAlert();
   this.confirmWindow = false;
+  this.isOnlineNow();
 }
+
 ForceNetwork.prototype.onOffline = function() {
   this.ensureNetworkConnection();
+  
 }
 ForceNetwork.prototype.onResume = function() {
   this.ensureNetworkConnection();
@@ -103,7 +145,11 @@ ForceNetwork.prototype.init = function(options) {
     this.options.confirmTitle = options.confirmTitle || 'Network access';
     this.options.confirmMessage = options.confirmMessage || 'Internet connection is not available';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
-    
+    this.options.url = options.url || 'http://www.google.com';
+    this.options.isOnline = options.isOnline || function(){};
+    this.options.isOffline = options.isOffline || function(){};
+    this.options.isError = options.isError || function(){};
+
     document.addEventListener("online", this.onOnline.bind(this), false);
     document.addEventListener("offline", this.onOffline.bind(this), false);
     document.addEventListener("resume", this.onResume.bind(this), false);

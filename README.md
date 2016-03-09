@@ -28,6 +28,7 @@ options :
  - `confirmMessage` : title of the confirm message when no connexion
  - `confirmButtonTitle` : title of the button to open settings when no connexion
  - 'confirmButtonTitles' : this is required in case you want to show dialog to either enable WiFi or open Network (Android Only)
+ - 'url' : this url will be used to check Internet connection, if not given it will use http://www.google.com
  
 
 #### `cordova.plugins.ForceNetwork.getConnectionType()`
@@ -43,7 +44,7 @@ return boolean indicating if we have any internet
 open iOS network settings panel
 open Android network settings panel
 
-#### `cordova.plugins.ForceNetwork.openNetworkDialog()`
+#### `cordova.plugins.ForceNetwork.openNetworkDialog(success, error)`
 
 open Dialog to ask user to enable WiFi Network or open Network settings panel
 
