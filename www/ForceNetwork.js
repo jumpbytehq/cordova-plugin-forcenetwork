@@ -21,7 +21,7 @@ ForceNetwork.prototype.isOnlineNow = function(){
   var that = this;
 
   xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState === 4 && xhttp.status == 200) {
+    if (xmlhttp.readyState === 4 && xmlhttp.status == 200) {
       that.options.isOnline();    
     }else{
       that.options.isOffline();

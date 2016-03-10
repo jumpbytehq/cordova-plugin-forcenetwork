@@ -29,6 +29,8 @@ options :
  - `confirmButtonTitle` : title of the button to open settings when no connexion
  - 'confirmButtonTitles' : this is required in case you want to show dialog to either enable WiFi or open Network (Android Only)
  - 'url' : this url will be used to check Internet connection, if not given it will use http://www.google.com
+ - 'isOnline' : callback when device goes online
+ - 'isOffline' : callback when device goes offlice
  
 
 #### `cordova.plugins.ForceNetwork.getConnectionType()`
