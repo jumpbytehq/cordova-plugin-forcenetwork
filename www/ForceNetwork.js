@@ -21,13 +21,18 @@ ForceNetwork.prototype.isOnlineNow = function(){
   var that = this;
 
   xmlhttp.onreadystatechange = function() {
+    console.log('[ForceNetwork] xmlhttp - ', xmlhttp);
+    if (xmlhttp.readyState === 1 || xmlhttp.readyState === 2 || xmlhttp.readyState === 3) {
+      console.log('[ForceNetwork] INPROCESS');
+      return;
+    }
+    
     if (xmlhttp.readyState === 4 && xmlhttp.status == 200) {
-      that.options.isOnline();    
+      that.options.isOnline();
     }else{
       that.options.isOffline();
     }
   };
-
   xmlhttp.open('GET', this.options.url, true);
   xmlhttp.send();
 };
@@ -41,12 +46,12 @@ ForceNetwork.prototype.isConnected = function () {
 };
 
 ForceNetwork.prototype.enableWifi = function(){
-  console.log("CDVForceNetwork - enable wifi");
+  console.log("[ForceNetwork] CDVForceNetwork - enable wifi");
     cordova.exec(function() {}, function() {}, "CDVForceNetwork", "enableWifi", []);
 };
 
 ForceNetwork.prototype.openNetworkSettings = function () {
-  console.log("CDVForceNetwork - open network settings");
+  console.log("[ForceNetwork] CDVForceNetwork - open network settings");
     cordova.exec(function() {}, function() {}, "CDVForceNetwork", "openNetworkSettings", []);
 };
 
@@ -61,7 +66,7 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
                   that.confirmWindow = true;
                   
                   navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
-                      console.log("button clicked " + buttonIndex);
+                      console.log("[ForceNetwork] button clicked " + buttonIndex);
                       if(buttonIndex == 1){
                         that.confirmWindow = false;
                         that.enableWifi();
@@ -82,57 +87,59 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
             }
         }, that.options.timeoutDelay);
     } else {
-      navigator.notification.dismissAlert();
+      //navigator.notification.dismissAlert();
+      console.log('[ForceNetwork] Hide Aler Window.');
       that.confirmWindow = false;
     }
 };
 
 ForceNetwork.prototype.openNetworkDialog = function () {
     // ensure network is available and invite user to open settings
-    var that = this;
+    /*var that = this;
     if (!this.isConnected()) {
         setTimeout(function() {
             // second check after timeout
             if (!that.isConnected()) {
                 if (!that.confirmWindow) {
-                  that.confirmWindow = true;
-                  navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
-            console.log("button clicked " + buttonIndex);
+                  that.confirmWindow = true;*/
+                  navigator.notification.confirm(this.options.confirmMessage, function(buttonIndex) {
+                      console.log("[ForceNetwork] button clicked " + buttonIndex);
 
                       if(buttonIndex == 1){
-                        that.confirmWindow = false;
-                        that.enableWifi();
-                        if(success){
+                        this.confirmWindow = false;
+                        this.enableWifi();
+                        /*if(success){
                           setTimeout(function(){
-                            that.isOnline();
+                            this.isOnline();
                           }, 5000);
-                        }                      
+                        }                      */
                       }else if(buttonIndex == 2){
-                        that.confirmWindow = false;
-                        that.openNetworkSettings();
+                        this.confirmWindow = false;
+                        this.openNetworkSettings();
                       }else{
-                        that.confirmWindow = false;
-                        that.options.isError();  
+                        this.confirmWindow = false;
+                        this.options.isError();
                       }                      
-                  }, that.options.confirmTitle, ["Enable WiFi", "Open Netowrk", "Cancel"]);
-                }
+                  }, this.options.confirmTitle, ["Enable WiFi", "Open Netowrk", "Cancel"]);
+                  this.confirmWindow = true;
+                /*}
             }
         }, that.options.timeoutDelay);
     } else {
-      navigator.notification.dismissAlert();
+      //navigator.notification.dismissAlert();
       that.confirmWindow = false;
-    }
+    }*/
 };
 
 ForceNetwork.prototype.onOnline = function() {
-  navigator.notification.dismissAlert();
+  //navigator.notification.dismissAlert();
   this.confirmWindow = false;
-  this.isOnlineNow();
+  // this.isOnlineNow();
 }
 
 ForceNetwork.prototype.onOffline = function() {
-  this.ensureNetworkConnection();
-  
+  // this.ensureNetworkConnection();
+  this.isOffline();
 }
 ForceNetwork.prototype.onResume = function() {
   this.ensureNetworkConnection();

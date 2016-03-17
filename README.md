@@ -43,8 +43,7 @@ return boolean indicating if we have any internet
 
 #### `cordova.plugins.ForceNetwork.openNetworkSettings()`
 
-open iOS network settings panel
-open Android network settings panel
+open Android/iOS network settings panel
 
 #### `cordova.plugins.ForceNetwork.openNetworkDialog(success, error)`
 
