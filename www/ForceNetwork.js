@@ -140,12 +140,12 @@ ForceNetwork.prototype.openNetworkDialog = function () {
 ForceNetwork.prototype.onOnline = function() {
   //navigator.notification.dismissAlert();
   this.confirmWindow = false;
-  this.isOnline();
+  this.options.isOnline();
 }
 
 ForceNetwork.prototype.onOffline = function() {
   // this.ensureNetworkConnection();
-  this.isOffline();
+  this.options.isOffline();
 }
 ForceNetwork.prototype.onResume = function() {
   this.ensureNetworkConnection();
