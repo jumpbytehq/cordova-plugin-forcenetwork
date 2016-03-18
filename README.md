@@ -14,7 +14,7 @@ Connexion status is checked on : online, offline, resume
 
 Install the plugin :
 
-`cordova plugin add --save https://github.com/dhavaln/cordova-plugin-forcenetwork.git`
+`cordova plugin add --save https://github.com/jumpbytehq/cordova-plugin-forcenetwork`
 
 ## Usage
 

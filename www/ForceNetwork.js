@@ -13,6 +13,10 @@ ForceNetwork.prototype.getConnectionType = function () {
     states[Connection.CELL]     = 'Cell generic connection';
     states[Connection.NONE]     = 'No network connection';
 
+    // For Custom Changes
+    if(navigator.connection.type == Connection.UNKNOWN) {
+      return states[Connection.NONE];
+    }
     return states[navigator.connection.type];
 };
 
@@ -38,11 +42,12 @@ ForceNetwork.prototype.isOnlineNow = function(){
 };
 
 ForceNetwork.prototype.isConnected = function () {
-    return (navigator.connection.type === Connection.WIFI || 
+    /*return (navigator.connection.type === Connection.WIFI || 
             navigator.connection.type === Connection.CELL_2G || 
             navigator.connection.type === Connection.CELL_3G ||
             navigator.connection.type === Connection.CELL_4G ||
-            navigator.connection.type === Connection.CELL);
+            navigator.connection.type === Connection.CELL);*/
+    return (!(navigator.connection.type === Connection.NONE));
 };
 
 ForceNetwork.prototype.enableWifi = function(){
@@ -82,7 +87,7 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
                         that.confirmWindow = false;
                         that.options.isError();  
                       }                      
-                  }, that.options.confirmTitle, ["Enable WiFi", "Open Netowrk", "Cancel"]);
+                  }, that.options.confirmTitle, ["Enable WiFi", "Open Network Settings", "Cancel"]);
                 }
             }
         }, that.options.timeoutDelay);
@@ -120,7 +125,7 @@ ForceNetwork.prototype.openNetworkDialog = function () {
                         this.confirmWindow = false;
                         this.options.isError();
                       }                      
-                  }, this.options.confirmTitle, ["Enable WiFi", "Open Netowrk", "Cancel"]);
+                  }, this.options.confirmTitle, ["Enable WiFi", "Open Network Settings", "Cancel"]);
                   this.confirmWindow = true;
                 /*}
             }
@@ -134,7 +139,7 @@ ForceNetwork.prototype.openNetworkDialog = function () {
 ForceNetwork.prototype.onOnline = function() {
   //navigator.notification.dismissAlert();
   this.confirmWindow = false;
-  // this.isOnlineNow();
+  this.isOnline();
 }
 
 ForceNetwork.prototype.onOffline = function() {
@@ -158,8 +163,8 @@ ForceNetwork.prototype.init = function(options) {
     this.options.isError = options.isError || function(){};
 
     document.addEventListener("online", this.onOnline.bind(this), false);
-    document.addEventListener("offline", this.onOffline.bind(this), false);
-    document.addEventListener("resume", this.onResume.bind(this), false);
+    // document.addEventListener("offline", this.onOffline.bind(this), false);
+    // document.addEventListener("resume", this.onResume.bind(this), false);
 };
 
 module.exports = new ForceNetwork();
