@@ -100,6 +100,7 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
 
 ForceNetwork.prototype.openNetworkDialog = function () {
     // ensure network is available and invite user to open settings
+    var self = this;
     /*var that = this;
     if (!this.isConnected()) {
         setTimeout(function() {
@@ -111,19 +112,19 @@ ForceNetwork.prototype.openNetworkDialog = function () {
                       console.log("[ForceNetwork] button clicked " + buttonIndex);
 
                       if(buttonIndex == 1){
-                        this.confirmWindow = false;
-                        this.enableWifi();
+                        self.confirmWindow = false;
+                        self.enableWifi();
                         /*if(success){
                           setTimeout(function(){
-                            this.isOnline();
+                            self.isOnline();
                           }, 5000);
                         }                      */
                       }else if(buttonIndex == 2){
-                        this.confirmWindow = false;
-                        this.openNetworkSettings();
+                        self.confirmWindow = false;
+                        self.openNetworkSettings();
                       }else{
-                        this.confirmWindow = false;
-                        this.options.isError();
+                        self.confirmWindow = false;
+                        self.options.isError();
                       }                      
                   }, this.options.confirmTitle, ["Enable WiFi", "Open Network Settings", "Cancel"]);
                   this.confirmWindow = true;
