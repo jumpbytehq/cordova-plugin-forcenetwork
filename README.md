@@ -33,6 +33,24 @@ options :
  - 'isOffline' : callback when device goes offlice
  
 
+#### Sample Usage
+```
+if(window.cordova && window.cordova.plugins.ForceNetwork) {
+	// Initialize Plugin
+	cordova.plugins.ForceNetwork.init({
+		isOnline: function() {
+			console.log('USER is online.');
+		},
+		isOffline: function() {
+			window.alert('Please connect to Internet.');
+			cordova.plugins.ForceNetwork.openNetworkDialog();
+		}
+	});
+	// Check for Internet Connection
+	cordova.plugins.ForceNetwork.isOnlineNow();
+}
+```
+
 #### `cordova.plugins.ForceNetwork.getConnectionType()`
 
 return a string representing current connection type
